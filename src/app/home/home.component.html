@@ -1,0 +1,26 @@
+<section class="todoapp">
+
+  <header class="header">
+    <h1>products</h1>
+    <input class="new-todo" placeholder="新增商品" autofocus (keyup.enter)="addProduct($event.target)">
+  </header>
+
+  <!-- 清單區域開始 -->
+  <section class="main">
+    <ul class="todo-list">
+      <li *ngFor="let product of productList">
+        <app-product [product]="product" (editProductEmit)="editProduct($event)" (removeEmit)="remove($event)"></app-product>
+      </li>
+    </ul>
+
+  </section>
+  <!-- 清單區域結束 -->
+</section>
+
+<div *ngIf="showUpdate">
+  <span>Product Name:</span><input [(ngModel)]="editName">
+  <br>
+  <span>Product Description:</span><input [(ngModel)]="editDescr">
+  <br>
+  <button (click)="update()">Update</button>
+</div>
