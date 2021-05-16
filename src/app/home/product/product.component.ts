@@ -7,7 +7,7 @@ import { Product } from './product';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  @Input() product:Product;
+  @Input() productList:Product[];
   @Output() editProductEmit = new EventEmitter<Product>();
   @Output() removeEmit = new EventEmitter<Product>();
 
@@ -16,11 +16,11 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  editProd(){
-    this.editProductEmit.emit(this.product);
+  editProd(product:Product){
+    this.editProductEmit.emit(product);
   }
 
-  remove(){
-    this.removeEmit.emit(this.product);
+  remove(product:Product){
+    this.removeEmit.emit(product);
   }
 }

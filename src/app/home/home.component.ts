@@ -11,9 +11,8 @@ import { Product } from './product/product';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @Input() editName: string = '';
-  @Input() editDescr: string = '';
-
+  editName: string = '';
+  editDescr: string = '';
   showUpdate: boolean = false;
 
   productList$: Observable<Object>;
@@ -23,50 +22,20 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit() {
-    this.productList$ = this.dataService.getProducts$().pipe(
-      tap((p: any[]) => {
-        p.forEach(item => {
-          const product: Product = {
-            productName: item.productName,
-            productDescription: item.productDescription
-          };
-          this.productList.push(product);
-        });
-      })
+    this.dataService.getProducts$().subscribe(
+      (items:any[])=>{items.forEach((item:Product)=>{this.productList.push(item)})}
     );
-
-    this.productList$.subscribe();
-  }
-
-  getProd() {
-    this.productList$.subscribe();
-    // this.prodDataList$.subscribe((res:any)=>{
-
-    // },
-    // (err: Error) => {
-    //   console.error(err)
-    // }
-    // );
   }
 
   addProduct(inputRef: HTMLInputElement): void {
-    const prod: Product = {
-      productName: inputRef.value,
-      productDescription: ''
-    };
-    this.productList.push(prod);
+    this.productList.push({productName: inputRef.value,productDescription: ''});
     inputRef.value = '';
   }
 
-  deleteProduct(index: number) {
-    // this.list.splice(index, 1);
-  }
 
   remove(prod: Product) {
     const index: number = this.productList.indexOf(prod);
-    if (
-      this.productList[this.prodIndex] == this.productList[index]
-    ) {
+    if (this.productList[this.prodIndex] == this.productList[index]) {
       this.showUpdate = false;
     }
 
@@ -74,10 +43,6 @@ export class HomeComponent implements OnInit {
     
     if (this.prodIndex > index) {
       this.prodIndex--;
-    }
-
-    if (this.productList.length == 0) {
-      this.showUpdate = false;
     }
   }
 

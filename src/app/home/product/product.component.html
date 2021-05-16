@@ -1,3 +1,9 @@
-<label>{{product.productName}}</label>
-<button (click)="editProd(product)">Edit</button>
-<button class="destroy" (click)="remove(product)">X</button>
+<section class="main">
+  <ul class="todo-list">
+    <li *ngFor="let product of productList">
+      <label>{{product.productName}}</label>
+      <button (click)="editProd(product)">Edit</button>
+      <button class="destroy" (click)="remove(product)">X</button>
+    </li>
+  </ul>
+</section>
