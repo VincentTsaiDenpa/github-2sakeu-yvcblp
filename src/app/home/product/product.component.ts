@@ -17,10 +17,12 @@ export class ProductComponent implements OnInit {
   }
 
   editProd(product:Product){
+    console.log(product);
     this.editProductEmit.emit(product);
   }
 
   remove(product:Product){
+    console.log(product);
     this.removeEmit.emit(product);
   }
 }

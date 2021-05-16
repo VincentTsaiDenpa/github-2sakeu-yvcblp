@@ -32,25 +32,26 @@ export class HomeComponent implements OnInit {
     inputRef.value = '';
   }
 
-
-  remove(prod: Product) {
-    const index: number = this.productList.indexOf(prod);
-    if (this.productList[this.prodIndex] == this.productList[index]) {
-      this.showUpdate = false;
-    }
-
-    this.productList.splice(index, 1);
-    
-    if (this.prodIndex > index) {
-      this.prodIndex--;
-    }
+  editProduct(prod: string) {
+    console.log(prod);
+    // this.prodIndex = this.productList.indexOf(prod);
+    // this.editName = prod.productName;
+    // this.editDescr = prod.productDescription;
+    // this.showUpdate = true;
   }
 
-  editProduct(prod: Product) {
-    this.prodIndex = this.productList.indexOf(prod);
-    this.editName = prod.productName;
-    this.editDescr = prod.productDescription;
-    this.showUpdate = true;
+  remove(prod: Product) {
+    console.log(prod);
+    // const index: number = this.productList.indexOf(prod);
+    // if (this.productList[this.prodIndex] == this.productList[index]) {
+    //   this.showUpdate = false;
+    // }
+
+    // this.productList.splice(index, 1);
+    
+    // if (this.prodIndex > index) {
+    //   this.prodIndex--;
+    // }
   }
 
   update() {
